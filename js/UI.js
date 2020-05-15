@@ -56,14 +56,14 @@ class UI {
                 const marker = new L.marker([
                     parseFloat(latitude),
                     parseFloat(longitude)
-                ]).bindPopup(opcionesPopup);
+                ]).bindPopup(opcionesPopup)
 
                 //agregamos los markers a la capa
                 this.markers.addLayer(marker);
             });
 
             //agregar la capa de markers al mapa
-            this.markers.addTo(this.mapa);
+            this.markers.addTo(this.mapa)
         }
 
         //Buscador
@@ -80,9 +80,15 @@ class UI {
         }
 
         //filtra las sugerencias en base al input
-        filtrarSugerencias(resultado,busqueda) {
+        filtrarSugerencias(resultados,busqueda) {
             //filtrar con .filter
+            //Con indexOf recorremos todo lo que hay en la propiedad calle del objeto y 
+            //y lo que concuerda con la búsqueda (!== -1), lo filtra y lo retorna con filter.
+            //ya que indexOf retona -1 cuando algo no concuerda con la búsqueda.
+            const filtro = resultados.filter(filtro => filtro.calle.indexOf(busqueda) !== -1 );
+            //console.log(filtro);
             
             //mostrar los pines
+            this.mostrarPines(filtro);
         }
 }
