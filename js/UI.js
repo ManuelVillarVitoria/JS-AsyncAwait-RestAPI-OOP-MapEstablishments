@@ -45,14 +45,23 @@ class UI {
                 //destructuring cogiendo las propiedades que nos interesa del objeto obtenido en la respuesta.
                 const { latitude, longitude, calle, regular, premium } = dato;
 
+                //crear PopUP usando una función propia de Leaflet de globos de información
+                const opcionesPopup = L.popup()
+                    .setContent(`<p>Calle: ${calle}</p>
+                                 <p><b>Regular:</b> $ ${regular}</p>
+                                 <p><b>Premium:</b> $ ${premium}</p>
+                    `);
+
                 //agregar el PIN
                 const marker = new L.marker([
                     parseFloat(latitude),
                     parseFloat(longitude)
-                ]);
+                ]).bindPopup(opcionesPopup);
+
                 //agregamos los markers a la capa
                 this.markers.addLayer(marker);
             });
+            
             //agregar la capa de markers al mapa
             this.markers.addTo(this.mapa);
         }
