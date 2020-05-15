@@ -61,8 +61,28 @@ class UI {
                 //agregamos los markers a la capa
                 this.markers.addLayer(marker);
             });
-            
+
             //agregar la capa de markers al mapa
             this.markers.addTo(this.mapa);
+        }
+
+        //Buscador
+        obtenerSugerencias(busqueda) {
+            this.api.obtenerDatos()
+                .then(datos => {
+                    //console.log(datos);
+                    const resultados = datos.respuestaJSON.results;
+
+                    //Enviar el JSON y la búsqueda para el filtrado
+                    this.filtrarSugerencias(resultados,busqueda);
+                    
+                })
+        }
+
+        //filtra las sugerencias en base al input
+        filtrarSugerencias(resultado,busqueda) {
+            //filtrar con .filter
+            
+            //mostrar los pines
         }
 }
